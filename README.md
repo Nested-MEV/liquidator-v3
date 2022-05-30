@@ -75,3 +75,5 @@ ENDPOINT_URL=https://solana-api.projectserum.com
 KEYPAIR=${HOME}/.config/solana/my-keypair.json
 TARGETS=500 0.1 0.75 0 0 0 0 0
 ```
+
+Test
