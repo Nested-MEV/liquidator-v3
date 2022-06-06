@@ -290,6 +290,11 @@ async function liquidatableFromSolanaRpc() {
   }
 }
 
+/**
+ * Checks if liquidatable > checks if 
+ * @param mangoAccount Mango account to check for liquidation
+ * @returns 
+ */
 async function maybeLiquidateAccount(
   mangoAccount: MangoAccount,
 ): Promise<boolean> {
@@ -302,7 +307,7 @@ async function maybeLiquidateAccount(
 
   const equity = mangoAccount.computeValue(mangoGroup, cache).toNumber();
   if (equity < minEquity && minEquity > 0) {
-    // console.log(`Account ${mangoAccountKeyString} only has ${equity}, PASS`);
+    console.log(`Account ${mangoAccountKeyString} only has ${equity}, which is < minEquity (${minEquity}), PASS`);
     return false;
   }
 
@@ -337,6 +342,10 @@ async function maybeLiquidateAccount(
   return true;
 }
 
+/**
+ * This async function will watch for new accounts and trigger orders to be executed.
+ * @param account This is the public key of the mango account to watch.
+ */
 async function newAccountOnLiquidatableFeed(account) {
   console.log(`Checking health of Account ${account}...`);
   try {
@@ -631,6 +640,9 @@ async function liquidateAccount(
     }
   }
 
+  /**
+   * Not sure what this block of code does, looking at rootbank?
+   */
   const healthComponents = liqee.getHealthComponents(mangoGroup, cache);
   const maintHealths = liqee.getHealthsFromComponents(
     mangoGroup,
